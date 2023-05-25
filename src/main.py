@@ -15,7 +15,9 @@ args = parser.parse_args()
 
 assert 1 <= args.nodes <= 23
 assert args.torus_type in ["1D", "2D"]
-assert (args.nodes**0.5)**2 == args.nodes
+
+if args.torus_type == "2D":
+    assert (args.nodes**0.5)**2 == args.nodes
 
 virtual_topo = VirtualTopo(args.nodes, torus_type=args.torus_type,
                            min_weight=args.min_weight, max_weight=args.max_weight)

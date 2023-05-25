@@ -7,6 +7,7 @@ import os
 
 random.seed(7)
 
+
 class Connection(namedlist("Connection", ["node", "weight"])):
     def __hash__(self):
         return hash((self.node, self.weight))
@@ -143,11 +144,11 @@ class VirtualTopo:
             self.__build_torus_1D(n)
         elif (self.torus_type == "2D"):
             self.__build_torus_2D(n)
-        
+
         # Add pairs to node's children lists
         for i, j in self.pairs:
             u, v = self.nodes[i], self.nodes[j]
-            u += v # overator overloaded
+            u += v  # overator overloaded
             v += u
 
         # set random weights
@@ -157,7 +158,7 @@ class VirtualTopo:
                     a = random.randint(min_weight, max_weight)
                     conn.weight = a
                     conn.node[node].weight = a
-        
+
         self.graphviz = self.__to_graphviz()
 
     def __build_torus_1D(self, n):
@@ -167,7 +168,9 @@ class VirtualTopo:
         """
         # Complete your code here
         # TODO
-        #self.pairs.add(frozenset((i, j)))
+        i = 0
+        j = i+1
+        self.pairs.add(frozenset((i, j)))
 
     def __build_torus_2D(self, n):
         """Create torus 2D undirected graph  with n nodes
@@ -177,6 +180,10 @@ class VirtualTopo:
         n_root = int(n**0.5)
         # Complete your code here
         # TODO
+        i = 0
+        j = i+1
+        # use the following sintax to join nodes
+        self.pairs.add(frozenset((i, j)))
 
     def view(self, name="virtual_topo"):
         """opens default pdf binary to show the graph, and saves as pdf
